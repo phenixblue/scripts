@@ -16,10 +16,10 @@
 #               01-18-2013 - Joe Searcy -> Initial script
 #               01-18-2013 - Joe Searcy -> Added filter for non-vSCSI disks
 #               01-18-2013 - Joe Searcy -> Added logic for single path vSCSI disks
-#  	        	01-25-2013 - Joe Searcy -> Fixed vSCSI count array arithmetic
+#  	        01-25-2013 - Joe Searcy -> Fixed vSCSI count array arithmetic
 #               01-27-2013 - Joe Searcy -> Added some additional comments and configured to 
 #                                          perform changes instead of only echoing to stdout
-#  	        	03-07-2014 - Joe Searcy -> Added debug mode and fixed variable values (stuff never removed from testing)
+#  	        03-07-2014 - Joe Searcy -> Added debug mode and fixed variable values (stuff never removed from testing)
 #
 
 #### Variables ####
