@@ -10,7 +10,7 @@
 #
 # This script also requires connectivity to "http://www.oss4aix.org" and its sub-directories.
 #
-# This ocncept is based off of information on "http://www.perzl.org/aix/index.php?n=FAQs.FAQs#rpm-dependency-hell"
+# This concept is based off of information on "http://www.perzl.org/aix/index.php?n=FAQs.FAQs#rpm-dependency-hell"
 #
 #	Usage: aix-rpm-deps.sh [ -d ] -r <rpm>
 #
