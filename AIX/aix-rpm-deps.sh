@@ -23,16 +23,18 @@
 
 #### Variables ####
 AIX_VERS="aix61"
-TARGET_DIR="/tmp/aix_python"
+TARGET_DIR="/tmp/aix_rpm_deps_`date '+%m%d%Y_%H%M'`"
 RPM_DIR="${TARGET_DIR}/rpm"
 TMP_DIR="${TARGET_DIR}/tmp"
 RPM_LIST="${TMP_DIR}/rpm.txt"
 RPM_TMP_LIST="${TMP_DIR}/rpm.tmp.txt"
 DEPS_LIST="${TMP_DIR}/deps.txt"
+LS=/bin/ls
 CAT=/bin/cat
 ECHO=/bin/echo
 GREP=/bin/grep
 MKDIR=/bin/mkdir
+AWK=/usr/bin/awk
 SED=/bin/sed
 SORT=/usr/bin/sort
 WGET=/usr/bin/wget
@@ -140,7 +142,7 @@ download_deps() {
 	${WGET} -q -P ${TARGET_DIR} http://www.oss4aix.org/download/rpmdb/deplists/${AIX_VERS}/${1}
 	
 	${CAT} ${TARGET_DIR}/${1} | ${SORT} -u > ${RPM_TMP_LIST}
-	
+
 	RPM=`deps_to_rpm "${1}"`
 	
 	for rpm in `${CAT} ${RPM_TMP_LIST} | ${SORT} -u | ${GREP} -v ${RPM}`
@@ -173,6 +175,14 @@ build_rpm_list() {
 	
 	${CAT} ${TARGET_DIR}/*.deps | ${SORT} -u > ${RPM_LIST}
 
+	for top_rpm in `${LS} ${TARGET_DIR}/*deps | ${AWK} -F/ '{print $4}'`
+		do
+			TOP_LEVEL_RPM=`deps_to_rpm "${top_rpm}"`
+
+			if [ `${GREP} "${TOP_LEVEL_RPM}" ${RPM_LIST} | wc -l` -lt 1 ]; then
+				echo "${TOP_LEVEL_RPM}" >> ${RPM_LIST}
+			fi
+	done
 }
 
 download_rpm_list() {
