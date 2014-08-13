@@ -19,6 +19,9 @@
 #
 #	v1.0 -> 05-15-2014
 #		Initial script
+#	v1.1 -> 08-13-2014
+#		Corrected TARGET_DIR, variablized additional commands for flexibility, and added a check to verify
+#		the top level RPM is downloaded
 #
 
 #### Variables ####
